@@ -1,0 +1,40 @@
+import greenfoot.*;
+
+/**
+ * A rocket that can be controlled by the arrowkeys: up, left, right.
+ * The gun is fired by hitting the 'space' key. 'z' releases a proton wave.
+ * 
+ * @author Poul Henriksen
+ * @author Michael Kölling
+ * 
+ * @version 1.0
+ */
+public class spaceship extends Actor
+{
+    private static final int gunReloadTime = 3;         
+    private int reloadDelayCount;                          
+    private boolean walkingRight = true;
+
+    
+    public void act() 
+    {
+        if(walkingRight == true){
+            move(5);
+            if(isAtEdge()){
+                walkingRight = false;
+            }
+        }
+        else {
+            move(-5);
+            if (isAtEdge()) {
+                walkingRight = true;
+            }
+        }
+        
+        double random = Math.random();
+        if( random <= .02){getWorld().addObject(new money(), getX(), getY());
+        }   
+        
+    }
+   
+}
